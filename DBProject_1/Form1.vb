@@ -40,6 +40,9 @@ Public Class Form1
 
             If Count = 1 Then
                 MessageBox.Show("Username and password are correct")
+
+                Form2.Show()
+                Hide()
             ElseIf Count > 1 Then
                 MessageBox.Show("Username and password are duplicates")
             Else
