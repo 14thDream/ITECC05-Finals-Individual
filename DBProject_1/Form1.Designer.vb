@@ -72,6 +72,7 @@ Partial Class Form1
         ' 
         TextBox_Password.Location = New Point(80, 29)
         TextBox_Password.Name = "TextBox_Password"
+        TextBox_Password.PasswordChar = "*"c
         TextBox_Password.Size = New Size(100, 23)
         TextBox_Password.TabIndex = 3
         ' 
