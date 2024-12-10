@@ -29,4 +29,27 @@ Public Class Form2
 
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim SqlConnection = New MySqlConnection With {
+            .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text} WHERE id = {TextBox_Id.Text};"
+            Dim Command = New MySqlCommand(Query, SqlConnection)
+            Command.ExecuteReader()
+
+            MessageBox.Show("Data Updated")
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
+
+    End Sub
+
 End Class

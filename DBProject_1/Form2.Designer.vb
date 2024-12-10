@@ -24,29 +24,33 @@ Partial Class Form2
     Private Sub InitializeComponent()
         Button1 = New Button()
         Panel1 = New Panel()
+        Button3 = New Button()
+        Button2 = New Button()
+        TextBox_Age = New TextBox()
+        TextBox_Surname = New TextBox()
         TextBox_FirstName = New TextBox()
         TextBox_Id = New TextBox()
         Label4 = New Label()
         Label3 = New Label()
         Label2 = New Label()
         Label1 = New Label()
-        TextBox_Surname = New TextBox()
-        TextBox_Age = New TextBox()
-        Button2 = New Button()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' Button1
         ' 
+        Button1.AutoSize = True
+        Button1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button1.Location = New Point(3, 3)
         Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
+        Button1.Size = New Size(106, 35)
         Button1.TabIndex = 1
         Button1.Text = "SignOut"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Panel1
         ' 
+        Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(TextBox_Age)
         Panel1.Controls.Add(TextBox_Surname)
@@ -60,6 +64,42 @@ Partial Class Form2
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(200, 164)
         Panel1.TabIndex = 2
+        ' 
+        ' Button3
+        ' 
+        Button3.AutoSize = True
+        Button3.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button3.Location = New Point(100, 126)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(97, 35)
+        Button3.TabIndex = 9
+        Button3.Text = "Update"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.AutoSize = True
+        Button2.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button2.Location = New Point(3, 126)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(97, 35)
+        Button2.TabIndex = 8
+        Button2.Text = "Save"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' TextBox_Age
+        ' 
+        TextBox_Age.Location = New Point(82, 93)
+        TextBox_Age.Name = "TextBox_Age"
+        TextBox_Age.Size = New Size(115, 23)
+        TextBox_Age.TabIndex = 7
+        ' 
+        ' TextBox_Surname
+        ' 
+        TextBox_Surname.Location = New Point(82, 63)
+        TextBox_Surname.Name = "TextBox_Surname"
+        TextBox_Surname.Size = New Size(115, 23)
+        TextBox_Surname.TabIndex = 6
         ' 
         ' TextBox_FirstName
         ' 
@@ -111,29 +151,6 @@ Partial Class Form2
         Label1.TabIndex = 0
         Label1.Text = "Id"
         ' 
-        ' TextBox_Surname
-        ' 
-        TextBox_Surname.Location = New Point(82, 63)
-        TextBox_Surname.Name = "TextBox_Surname"
-        TextBox_Surname.Size = New Size(115, 23)
-        TextBox_Surname.TabIndex = 6
-        ' 
-        ' TextBox_Age
-        ' 
-        TextBox_Age.Location = New Point(82, 93)
-        TextBox_Age.Name = "TextBox_Age"
-        TextBox_Age.Size = New Size(115, 23)
-        TextBox_Age.TabIndex = 7
-        ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(61, 138)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(75, 23)
-        Button2.TabIndex = 8
-        Button2.Text = "Save"
-        Button2.UseVisualStyleBackColor = True
-        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -146,6 +163,7 @@ Partial Class Form2
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
     Friend WithEvents Button1 As Button
     Friend WithEvents Panel1 As Panel
@@ -158,4 +176,5 @@ Partial Class Form2
     Friend WithEvents TextBox_Age As TextBox
     Friend WithEvents TextBox_Surname As TextBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class
