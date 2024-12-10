@@ -90,7 +90,9 @@ Public Class Form2
                 End If
 
                 Dim Name As String = Reader.GetString("first_name")
+
                 ComboBox1.Items.Add(Name)
+                ListBox1.Items.Add(Name)
             End While
 
             SqlConnection.Close()
@@ -126,5 +128,33 @@ Public Class Form2
         Finally
             SqlConnection.Dispose()
         End Try
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        Dim SqlConnection = New MySqlConnection With {
+            .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Query = $"SELECT id, surname, age FROM edata WHERE first_name = '{ListBox1.Text}';"
+            Dim Command = New MySqlCommand(Query, SqlConnection)
+
+            Dim Reader = Command.ExecuteReader()
+            Reader.Read()
+
+            TextBox_Id.Text = Reader.GetInt32("id")
+            TextBox_FirstName.Text = ListBox1.Text
+            TextBox_Surname.Text = If(Reader.GetString("surname"), "")
+            TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
+
     End Sub
 End Class

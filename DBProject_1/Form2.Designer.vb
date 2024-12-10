@@ -36,13 +36,14 @@ Partial Class Form2
         Label2 = New Label()
         Label1 = New Label()
         ComboBox1 = New ComboBox()
+        ListBox1 = New ListBox()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' Button1
         ' 
         Button1.AutoSize = True
-        Button1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0)
         Button1.Location = New Point(3, 3)
         Button1.Name = "Button1"
         Button1.Size = New Size(106, 35)
@@ -72,7 +73,7 @@ Partial Class Form2
         ' Button4
         ' 
         Button4.AutoSize = True
-        Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0)
         Button4.Location = New Point(3, 164)
         Button4.Name = "Button4"
         Button4.Size = New Size(97, 35)
@@ -83,7 +84,7 @@ Partial Class Form2
         ' Button3
         ' 
         Button3.AutoSize = True
-        Button3.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button3.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0)
         Button3.Location = New Point(100, 126)
         Button3.Name = "Button3"
         Button3.Size = New Size(97, 35)
@@ -94,7 +95,7 @@ Partial Class Form2
         ' Button2
         ' 
         Button2.AutoSize = True
-        Button2.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button2.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0)
         Button2.Location = New Point(3, 126)
         Button2.Name = "Button2"
         Button2.Size = New Size(97, 35)
@@ -168,18 +169,28 @@ Partial Class Form2
         ' 
         ' ComboBox1
         ' 
-        ComboBox1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0)
         ComboBox1.FormattingEnabled = True
         ComboBox1.Location = New Point(263, 63)
         ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(121, 33)
+        ComboBox1.Size = New Size(200, 33)
         ComboBox1.TabIndex = 3
+        ' 
+        ' ListBox1
+        ' 
+        ListBox1.FormattingEnabled = True
+        ListBox1.ItemHeight = 15
+        ListBox1.Location = New Point(264, 102)
+        ListBox1.Name = "ListBox1"
+        ListBox1.Size = New Size(200, 169)
+        ListBox1.TabIndex = 4
         ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(ListBox1)
         Controls.Add(ComboBox1)
         Controls.Add(Panel1)
         Controls.Add(Button1)
@@ -204,4 +215,5 @@ Partial Class Form2
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ListBox1 As ListBox
 End Class
