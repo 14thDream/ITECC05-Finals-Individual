@@ -39,6 +39,7 @@ Partial Class Form2
         DataGridView1 = New DataGridView()
         ButtonLoadTable = New Button()
         ListBox1 = New ListBox()
+        TextBoxSearch = New TextBox()
         Panel1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -191,7 +192,7 @@ Partial Class Form2
         ' 
         ButtonLoadTable.AutoSize = True
         ButtonLoadTable.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ButtonLoadTable.Location = New Point(427, 286)
+        ButtonLoadTable.Location = New Point(263, 286)
         ButtonLoadTable.Name = "ButtonLoadTable"
         ButtonLoadTable.Size = New Size(140, 35)
         ButtonLoadTable.TabIndex = 11
@@ -206,11 +207,20 @@ Partial Class Form2
         ListBox1.Size = New Size(200, 34)
         ListBox1.TabIndex = 0
         ' 
+        ' TextBoxSearch
+        ' 
+        TextBoxSearch.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        TextBoxSearch.Location = New Point(439, 288)
+        TextBoxSearch.Name = "TextBoxSearch"
+        TextBoxSearch.Size = New Size(297, 31)
+        TextBoxSearch.TabIndex = 12
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(TextBoxSearch)
         Controls.Add(ListBox1)
         Controls.Add(ButtonLoadTable)
         Controls.Add(DataGridView1)
@@ -242,4 +252,5 @@ Partial Class Form2
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ButtonLoadTable As Button
     Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents TextBoxSearch As TextBox
 End Class

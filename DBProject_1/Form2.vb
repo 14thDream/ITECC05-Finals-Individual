@@ -1,6 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class Form2
+    Private DbDataTable As New DataTable
+
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Form1.Show()
         Close()
@@ -172,7 +174,6 @@ Public Class Form2
             Dim Query = "SELECT id, first_name, surname, age FROM edata;"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
-            Dim dbDatatable As New DataTable
             Dim SDA As New MySqlDataAdapter With {
                 .SelectCommand = Command
             }
@@ -181,9 +182,9 @@ Public Class Form2
                 .DataSource = dbDatatable
             }
 
-            SDA.Fill(dbDatatable)
+            SDA.Fill(DbDataTable)
             DataGridView1.DataSource = bSource
-            SDA.Update(dbDatatable)
+            SDA.Update(DbDataTable)
 
             SqlConnection.Close()
 
@@ -217,5 +218,13 @@ Public Class Form2
         TextBox_FirstName.Text = If(IsDBNull(FirstName), "", FirstName)
         TextBox_Surname.Text = If(IsDBNull(Surname), "", Surname)
         TextBox_Age.Text = If(IsDBNull(Age), "", Age)
+    End Sub
+
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
+        Dim DV As New DataView(DbDataTable) With {
+            .RowFilter = $"first_name LIKE '%{TextBoxSearch.Text}%'"
+        }
+
+        DataGridView1.DataSource = DV
     End Sub
 End Class
