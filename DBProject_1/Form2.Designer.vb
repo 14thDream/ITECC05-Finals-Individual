@@ -34,6 +34,7 @@ Partial Class Form2
         Label3 = New Label()
         Label2 = New Label()
         Label1 = New Label()
+        Button4 = New Button()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -50,6 +51,8 @@ Partial Class Form2
         ' 
         ' Panel1
         ' 
+        Panel1.AutoSize = True
+        Panel1.Controls.Add(Button4)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(TextBox_Age)
@@ -62,7 +65,7 @@ Partial Class Form2
         Panel1.Controls.Add(Label1)
         Panel1.Location = New Point(0, 63)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(200, 164)
+        Panel1.Size = New Size(200, 202)
         Panel1.TabIndex = 2
         ' 
         ' Button3
@@ -151,6 +154,17 @@ Partial Class Form2
         Label1.TabIndex = 0
         Label1.Text = "Id"
         ' 
+        ' Button4
+        ' 
+        Button4.AutoSize = True
+        Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button4.Location = New Point(3, 164)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(97, 35)
+        Button4.TabIndex = 10
+        Button4.Text = "Delete"
+        Button4.UseVisualStyleBackColor = True
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -177,4 +191,5 @@ Partial Class Form2
     Friend WithEvents TextBox_Surname As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class

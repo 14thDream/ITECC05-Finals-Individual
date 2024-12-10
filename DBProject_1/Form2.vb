@@ -52,4 +52,26 @@ Public Class Form2
 
     End Sub
 
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim SqlConnection = New MySqlConnection With {
+            .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Query = $"DELETE FROM edata WHERE id = {TextBox_Id.Text};"
+            Dim Command = New MySqlCommand(Query, SqlConnection)
+            Command.ExecuteReader()
+
+            MessageBox.Show("Data Deleted")
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
+
+    End Sub
 End Class
