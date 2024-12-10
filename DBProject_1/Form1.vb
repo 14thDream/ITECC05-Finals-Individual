@@ -42,7 +42,7 @@ Public Class Form1
                 MessageBox.Show("Username and password are correct")
 
                 Form2.Show()
-                Hide()
+                Close()
             ElseIf Count > 1 Then
                 MessageBox.Show("Username and password are duplicates")
             Else
