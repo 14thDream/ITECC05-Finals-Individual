@@ -38,6 +38,7 @@ Partial Class Form2
         ComboBox1 = New ComboBox()
         DataGridView1 = New DataGridView()
         ButtonLoadTable = New Button()
+        ListBox1 = New ListBox()
         Panel1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -173,7 +174,7 @@ Partial Class Form2
         ' 
         ComboBox1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(396, 12)
+        ComboBox1.Location = New Point(263, 12)
         ComboBox1.Name = "ComboBox1"
         ComboBox1.Size = New Size(200, 33)
         ComboBox1.TabIndex = 3
@@ -197,11 +198,20 @@ Partial Class Form2
         ButtonLoadTable.Text = "Load Table"
         ButtonLoadTable.UseVisualStyleBackColor = True
         ' 
+        ' ListBox1
+        ' 
+        ListBox1.ItemHeight = 15
+        ListBox1.Location = New Point(536, 12)
+        ListBox1.Name = "ListBox1"
+        ListBox1.Size = New Size(200, 34)
+        ListBox1.TabIndex = 0
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(ListBox1)
         Controls.Add(ButtonLoadTable)
         Controls.Add(DataGridView1)
         Controls.Add(ComboBox1)
@@ -231,4 +241,5 @@ Partial Class Form2
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents ButtonLoadTable As Button
+    Friend WithEvents ListBox1 As ListBox
 End Class
