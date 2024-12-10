@@ -214,7 +214,7 @@ Public Class Form2
         Dim Surname = Row.Cells("surname").Value
         Dim Age = Row.Cells("surname").Value
 
-        TextBox_Id.Text = Id
+        TextBox_Id.Text = If(IsDBNull(Id), "", Id)
         TextBox_FirstName.Text = If(IsDBNull(FirstName), "", FirstName)
         TextBox_Surname.Text = If(IsDBNull(Surname), "", Surname)
         TextBox_Age.Text = If(IsDBNull(Age), "", Age)
