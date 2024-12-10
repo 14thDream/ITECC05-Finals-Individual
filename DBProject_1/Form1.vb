@@ -2,7 +2,7 @@
 
 Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim SqlConnection = New MySqlConnection With {
+        Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
 
@@ -22,7 +22,7 @@ Public Class Form1
 
 
     Private Sub Button_Login_Click(sender As Object, e As EventArgs) Handles Button_Login.Click
-        Dim SqlConnection = New MySqlConnection With {
+        Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
 
@@ -30,7 +30,7 @@ Public Class Form1
             SqlConnection.Open()
 
             Dim Query = $"SELECT * FROM edata WHERE username = '{TextBox_Username.Text}' AND password = '{TextBox_Password.Text}';"
-            Dim Command = New MySqlCommand(Query, SqlConnection)
+            Dim Command As New MySqlCommand(Query, SqlConnection)
             Dim Reader = Command.ExecuteReader()
 
             Dim Count = 0
