@@ -171,7 +171,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = "SELECT id, first_name, surname, age FROM edata;"
+            Dim Query = "SELECT id AS 'Employee Id', first_name AS 'First Name', surname AS 'Surname', age AS 'Age' FROM edata;"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim SDA As New MySqlDataAdapter With {
@@ -209,10 +209,10 @@ Public Class Form2
         End If
 
         Dim Row = DataGridView1.Rows(e.RowIndex)
-        Dim Id = Row.Cells("id").Value
-        Dim FirstName = Row.Cells("first_name").Value
-        Dim Surname = Row.Cells("surname").Value
-        Dim Age = Row.Cells("surname").Value
+        Dim Id = Row.Cells("Employee Id").Value
+        Dim FirstName = Row.Cells("First Name").Value
+        Dim Surname = Row.Cells("Surname").Value
+        Dim Age = Row.Cells("Age").Value
 
         TextBox_Id.Text = If(IsDBNull(Id), "", Id)
         TextBox_FirstName.Text = If(IsDBNull(FirstName), "", FirstName)
@@ -222,7 +222,7 @@ Public Class Form2
 
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
         Dim DV As New DataView(DbDataTable) With {
-            .RowFilter = $"first_name LIKE '%{TextBoxSearch.Text}%'"
+            .RowFilter = $"[First Name] LIKE '%{TextBoxSearch.Text}%'"
         }
 
         DataGridView1.DataSource = DV
