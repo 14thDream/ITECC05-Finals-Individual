@@ -26,7 +26,6 @@ Public Class Form2
         Finally
             SqlConnection.Dispose()
         End Try
-
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -49,7 +48,6 @@ Public Class Form2
         Finally
             SqlConnection.Dispose()
         End Try
-
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -72,7 +70,6 @@ Public Class Form2
         Finally
             SqlConnection.Dispose()
         End Try
-
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -102,7 +99,32 @@ Public Class Form2
         Finally
             SqlConnection.Dispose()
         End Try
-
     End Sub
 
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        Dim SqlConnection = New MySqlConnection With {
+            .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Query = $"SELECT id, surname, age FROM edata WHERE first_name = '{ComboBox1.Text}';"
+            Dim Command = New MySqlCommand(Query, SqlConnection)
+
+            Dim Reader = Command.ExecuteReader()
+            Reader.Read()
+
+            TextBox_Id.Text = Reader.GetInt32("id")
+            TextBox_FirstName.Text = ComboBox1.Text
+            TextBox_Surname.Text = If(Reader.GetString("surname"), "")
+            TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
+    End Sub
 End Class
