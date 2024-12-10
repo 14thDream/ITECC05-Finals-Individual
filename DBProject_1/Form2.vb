@@ -173,4 +173,21 @@ Public Class Form2
     Private Sub ButtonLoadTable_Click(sender As Object, e As EventArgs) Handles ButtonLoadTable.Click
         LoadTable()
     End Sub
+
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex < 0 Then
+            Return
+        End If
+
+        Dim Row = DataGridView1.Rows(e.RowIndex)
+        Dim Id = Row.Cells("id").Value
+        Dim FirstName = Row.Cells("first_name").Value
+        Dim Surname = Row.Cells("surname").Value
+        Dim Age = Row.Cells("surname").Value
+
+        TextBox_Id.Text = Id
+        TextBox_FirstName.Text = If(IsDBNull(FirstName), "", FirstName)
+        TextBox_Surname.Text = If(IsDBNull(Surname), "", Surname)
+        TextBox_Age.Text = If(IsDBNull(Age), "", Age)
+    End Sub
 End Class
