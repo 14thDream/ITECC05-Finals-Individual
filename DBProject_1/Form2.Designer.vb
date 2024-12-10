@@ -24,6 +24,7 @@ Partial Class Form2
     Private Sub InitializeComponent()
         Button1 = New Button()
         Panel1 = New Panel()
+        Button4 = New Button()
         Button3 = New Button()
         Button2 = New Button()
         TextBox_Age = New TextBox()
@@ -34,7 +35,7 @@ Partial Class Form2
         Label3 = New Label()
         Label2 = New Label()
         Label1 = New Label()
-        Button4 = New Button()
+        ComboBox1 = New ComboBox()
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -67,6 +68,17 @@ Partial Class Form2
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(200, 202)
         Panel1.TabIndex = 2
+        ' 
+        ' Button4
+        ' 
+        Button4.AutoSize = True
+        Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button4.Location = New Point(3, 164)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(97, 35)
+        Button4.TabIndex = 10
+        Button4.Text = "Delete"
+        Button4.UseVisualStyleBackColor = True
         ' 
         ' Button3
         ' 
@@ -154,22 +166,21 @@ Partial Class Form2
         Label1.TabIndex = 0
         Label1.Text = "Id"
         ' 
-        ' Button4
+        ' ComboBox1
         ' 
-        Button4.AutoSize = True
-        Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.Location = New Point(3, 164)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(97, 35)
-        Button4.TabIndex = 10
-        Button4.Text = "Delete"
-        Button4.UseVisualStyleBackColor = True
+        ComboBox1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Location = New Point(263, 63)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(121, 33)
+        ComboBox1.TabIndex = 3
         ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(ComboBox1)
         Controls.Add(Panel1)
         Controls.Add(Button1)
         Name = "Form2"
@@ -192,4 +203,5 @@ Partial Class Form2
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents ComboBox1 As ComboBox
 End Class

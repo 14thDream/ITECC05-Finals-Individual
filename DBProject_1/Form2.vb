@@ -74,4 +74,35 @@ Public Class Form2
         End Try
 
     End Sub
+
+    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim SqlConnection = New MySqlConnection With {
+            .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Query = $"SELECT first_name FROM edata;"
+            Dim Command = New MySqlCommand(Query, SqlConnection)
+            Dim Reader = Command.ExecuteReader()
+
+            While Reader.Read
+                If Reader.IsDBNull("first_name") Then
+                    Continue While
+                End If
+
+                Dim Name As String = Reader.GetString("first_name")
+                ComboBox1.Items.Add(Name)
+            End While
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
+
+    End Sub
+
 End Class
