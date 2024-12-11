@@ -27,6 +27,9 @@ Partial Class Form2
         Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         Button1 = New Button()
         Panel1 = New Panel()
+        Label6 = New Label()
+        DateTimePicker1 = New DateTimePicker()
+        Label5 = New Label()
         RadioButtonFemale = New RadioButton()
         RadioButtonMale = New RadioButton()
         Button4 = New Button()
@@ -66,6 +69,9 @@ Partial Class Form2
         ' Panel1
         ' 
         Panel1.AutoSize = True
+        Panel1.Controls.Add(Label6)
+        Panel1.Controls.Add(DateTimePicker1)
+        Panel1.Controls.Add(Label5)
         Panel1.Controls.Add(RadioButtonFemale)
         Panel1.Controls.Add(RadioButtonMale)
         Panel1.Controls.Add(Button4)
@@ -81,13 +87,40 @@ Partial Class Form2
         Panel1.Controls.Add(Label1)
         Panel1.Location = New Point(0, 63)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(200, 232)
+        Panel1.Size = New Size(209, 262)
         Panel1.TabIndex = 2
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(3, 159)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(59, 15)
+        Label6.TabIndex = 14
+        Label6.Text = "Birth Date"
+        ' 
+        ' DateTimePicker1
+        ' 
+        DateTimePicker1.CustomFormat = "yyyy-MM-dd"
+        DateTimePicker1.Format = DateTimePickerFormat.Custom
+        DateTimePicker1.Location = New Point(82, 153)
+        DateTimePicker1.Name = "DateTimePicker1"
+        DateTimePicker1.Size = New Size(115, 23)
+        DateTimePicker1.TabIndex = 17
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(3, 126)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(45, 15)
+        Label5.TabIndex = 16
+        Label5.Text = "Gender"
         ' 
         ' RadioButtonFemale
         ' 
         RadioButtonFemale.AutoSize = True
-        RadioButtonFemale.Location = New Point(118, 131)
+        RadioButtonFemale.Location = New Point(134, 124)
         RadioButtonFemale.Name = "RadioButtonFemale"
         RadioButtonFemale.Size = New Size(63, 19)
         RadioButtonFemale.TabIndex = 15
@@ -98,7 +131,7 @@ Partial Class Form2
         ' RadioButtonMale
         ' 
         RadioButtonMale.AutoSize = True
-        RadioButtonMale.Location = New Point(16, 131)
+        RadioButtonMale.Location = New Point(82, 124)
         RadioButtonMale.Name = "RadioButtonMale"
         RadioButtonMale.Size = New Size(51, 19)
         RadioButtonMale.TabIndex = 14
@@ -110,7 +143,7 @@ Partial Class Form2
         ' 
         Button4.AutoSize = True
         Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.Location = New Point(3, 194)
+        Button4.Location = New Point(3, 224)
         Button4.Name = "Button4"
         Button4.Size = New Size(97, 35)
         Button4.TabIndex = 10
@@ -121,7 +154,7 @@ Partial Class Form2
         ' 
         Button3.AutoSize = True
         Button3.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.Location = New Point(100, 156)
+        Button3.Location = New Point(100, 186)
         Button3.Name = "Button3"
         Button3.Size = New Size(97, 35)
         Button3.TabIndex = 9
@@ -132,7 +165,7 @@ Partial Class Form2
         ' 
         Button2.AutoSize = True
         Button2.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.Location = New Point(3, 156)
+        Button2.Location = New Point(3, 186)
         Button2.Name = "Button2"
         Button2.Size = New Size(97, 35)
         Button2.TabIndex = 8
@@ -280,7 +313,7 @@ Partial Class Form2
         ' 
         ' Form2
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 534)
         Controls.Add(ButtonLoadChart)
@@ -323,4 +356,7 @@ Partial Class Form2
     Friend WithEvents ButtonLoadChart As Button
     Friend WithEvents RadioButtonFemale As RadioButton
     Friend WithEvents RadioButtonMale As RadioButton
+    Friend WithEvents Label5 As Label
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents Label6 As Label
 End Class

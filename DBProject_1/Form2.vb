@@ -19,7 +19,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"INSERT INTO edata(id, first_name, surname, age, gender) VALUES ({TextBox_Id.Text}, '{TextBox_FirstName.Text}', '{TextBox_Surname.Text}', '{TextBox_Age.Text}', '{Gender}');"
+            Dim Query = $"INSERT INTO edata(id, first_name, surname, age, gender, birthdate) VALUES ({TextBox_Id.Text}, '{TextBox_FirstName.Text}', '{TextBox_Surname.Text}', '{TextBox_Age.Text}', '{Gender}', '{DateTimePicker1.Text}');"
             Dim Command As New MySqlCommand(Query, SqlConnection)
             Command.ExecuteReader()
 
@@ -42,7 +42,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text}, gender = '{Gender}' WHERE id = {TextBox_Id.Text};"
+            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text}, gender = '{Gender}', birthdate = '{DateTimePicker1.Text}' WHERE id = {TextBox_Id.Text};"
             Dim Command As New MySqlCommand(Query, SqlConnection)
             Command.ExecuteReader()
 
@@ -133,7 +133,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"SELECT id, surname, age, gender FROM edata WHERE first_name = '{ComboBox1.Text}';"
+            Dim Query = $"SELECT id, surname, age, gender, birthdate FROM edata WHERE first_name = '{ComboBox1.Text}';"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim Reader = Command.ExecuteReader()
@@ -145,6 +145,10 @@ Public Class Form2
             TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
 
             CheckGender(Reader.GetString("gender"))
+
+            If Not Reader.IsDBNull("birthdate") Then
+                DateTimePicker1.Text = Reader.GetDateTime("birthdate")
+            End If
 
             SqlConnection.Close()
         Catch ex As MySqlException
@@ -162,8 +166,8 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"SELECT id, surname, age, gender FROM edata WHERE first_name = '{ListBox1.Text}';"
-            Dim Command As New MySqlCommand(Query, SqlConnection)
+            Dim Query = $"SELECT id, surname, age, gender, birthdate FROM edata WHERE first_name = '{ListBox1.Text}';"
+                Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim Reader = Command.ExecuteReader()
             Reader.Read()
@@ -174,6 +178,10 @@ Public Class Form2
             TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
 
             CheckGender(Reader.GetString("gender"))
+
+            If Not Reader.IsDBNull("birthdate") Then
+                DateTimePicker1.Text = Reader.GetDateTime("birthdate")
+            End If
 
             SqlConnection.Close()
         Catch ex As MySqlException
@@ -191,7 +199,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = "SELECT id AS 'Employee Id', first_name AS 'First Name', surname AS 'Surname', age AS 'Age', gender as 'Gender' FROM edata;"
+            Dim Query = "SELECT id AS 'Employee Id', first_name AS 'First Name', surname AS 'Surname', age AS 'Age', gender AS 'Gender' FROM edata;"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim SDA As New MySqlDataAdapter With {
@@ -244,6 +252,32 @@ Public Class Form2
         If Not IsDBNull(gender) Then
             CheckGender(gender)
         End If
+
+        Dim SqlConnection As New MySqlConnection With {
+        .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Text = If(TextBox_Id.Text = "", "0", TextBox_Id.Text)
+
+            Dim Query = $"SELECT birthdate FROM edata WHERE id = {Text};"
+            Dim Command As New MySqlCommand(Query, SqlConnection)
+
+            Dim Reader = Command.ExecuteReader()
+            Reader.Read()
+
+            If Not Reader.IsDBNull("birthdate") Then
+                DateTimePicker1.Text = Reader.GetMySqlDateTime("birthdate")
+            End If
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
     End Sub
 
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
