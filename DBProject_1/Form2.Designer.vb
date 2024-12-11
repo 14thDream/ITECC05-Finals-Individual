@@ -27,6 +27,8 @@ Partial Class Form2
         Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         Button1 = New Button()
         Panel1 = New Panel()
+        RadioButtonFemale = New RadioButton()
+        RadioButtonMale = New RadioButton()
         Button4 = New Button()
         Button3 = New Button()
         Button2 = New Button()
@@ -64,6 +66,8 @@ Partial Class Form2
         ' Panel1
         ' 
         Panel1.AutoSize = True
+        Panel1.Controls.Add(RadioButtonFemale)
+        Panel1.Controls.Add(RadioButtonMale)
         Panel1.Controls.Add(Button4)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button2)
@@ -77,14 +81,36 @@ Partial Class Form2
         Panel1.Controls.Add(Label1)
         Panel1.Location = New Point(0, 63)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(200, 202)
+        Panel1.Size = New Size(200, 232)
         Panel1.TabIndex = 2
+        ' 
+        ' RadioButtonFemale
+        ' 
+        RadioButtonFemale.AutoSize = True
+        RadioButtonFemale.Location = New Point(118, 131)
+        RadioButtonFemale.Name = "RadioButtonFemale"
+        RadioButtonFemale.Size = New Size(63, 19)
+        RadioButtonFemale.TabIndex = 15
+        RadioButtonFemale.TabStop = True
+        RadioButtonFemale.Text = "Female"
+        RadioButtonFemale.UseVisualStyleBackColor = True
+        ' 
+        ' RadioButtonMale
+        ' 
+        RadioButtonMale.AutoSize = True
+        RadioButtonMale.Location = New Point(16, 131)
+        RadioButtonMale.Name = "RadioButtonMale"
+        RadioButtonMale.Size = New Size(51, 19)
+        RadioButtonMale.TabIndex = 14
+        RadioButtonMale.TabStop = True
+        RadioButtonMale.Text = "Male"
+        RadioButtonMale.UseVisualStyleBackColor = True
         ' 
         ' Button4
         ' 
         Button4.AutoSize = True
         Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.Location = New Point(3, 164)
+        Button4.Location = New Point(3, 194)
         Button4.Name = "Button4"
         Button4.Size = New Size(97, 35)
         Button4.TabIndex = 10
@@ -95,7 +121,7 @@ Partial Class Form2
         ' 
         Button3.AutoSize = True
         Button3.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.Location = New Point(100, 126)
+        Button3.Location = New Point(100, 156)
         Button3.Name = "Button3"
         Button3.Size = New Size(97, 35)
         Button3.TabIndex = 9
@@ -106,7 +132,7 @@ Partial Class Form2
         ' 
         Button2.AutoSize = True
         Button2.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.Location = New Point(3, 126)
+        Button2.Location = New Point(3, 156)
         Button2.Name = "Button2"
         Button2.Size = New Size(97, 35)
         Button2.TabIndex = 8
@@ -223,14 +249,14 @@ Partial Class Form2
         ' 
         ' Chart1
         ' 
-        ChartArea1.AxisX.Interval = 1R
+        ChartArea1.AxisX.Interval = 1.0R
         ChartArea1.AxisX.LabelStyle.Angle = -90
         ChartArea1.AxisX.LabelStyle.Interval = 1.0R
         ChartArea1.Name = "ChartArea1"
         Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         Chart1.Legends.Add(Legend1)
-        Chart1.Location = New Point(163, 327)
+        Chart1.Location = New Point(263, 327)
         Chart1.Name = "Chart1"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
@@ -245,7 +271,7 @@ Partial Class Form2
         ' 
         ButtonLoadChart.AutoSize = True
         ButtonLoadChart.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ButtonLoadChart.Location = New Point(31, 286)
+        ButtonLoadChart.Location = New Point(31, 412)
         ButtonLoadChart.Name = "ButtonLoadChart"
         ButtonLoadChart.Size = New Size(138, 35)
         ButtonLoadChart.TabIndex = 11
@@ -254,7 +280,7 @@ Partial Class Form2
         ' 
         ' Form2
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 534)
         Controls.Add(ButtonLoadChart)
@@ -295,4 +321,6 @@ Partial Class Form2
     Friend WithEvents TextBoxSearch As TextBox
     Friend WithEvents Chart1 As DataVisualization.Charting.Chart
     Friend WithEvents ButtonLoadChart As Button
+    Friend WithEvents RadioButtonFemale As RadioButton
+    Friend WithEvents RadioButtonMale As RadioButton
 End Class

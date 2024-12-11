@@ -1,8 +1,10 @@
-﻿Imports System.Windows.Forms.DataVisualization.Charting
+﻿Imports System.Diagnostics.Eventing
+Imports System.Windows.Forms.DataVisualization.Charting
 Imports MySql.Data.MySqlClient
 
 Public Class Form2
     Private DbDataTable As New DataTable
+    Private Gender As String
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Form1.Show()
@@ -17,7 +19,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"INSERT INTO edata(id, first_name, surname, age) VALUES ({TextBox_Id.Text}, '{TextBox_FirstName.Text}', '{TextBox_Surname.Text}', '{TextBox_Age.Text}');"
+            Dim Query = $"INSERT INTO edata(id, first_name, surname, age, gender) VALUES ({TextBox_Id.Text}, '{TextBox_FirstName.Text}', '{TextBox_Surname.Text}', '{TextBox_Age.Text}', '{Gender}');"
             Dim Command As New MySqlCommand(Query, SqlConnection)
             Command.ExecuteReader()
 
@@ -40,7 +42,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text} WHERE id = {TextBox_Id.Text};"
+            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text}, gender = '{Gender}' WHERE id = {TextBox_Id.Text};"
             Dim Command As New MySqlCommand(Query, SqlConnection)
             Command.ExecuteReader()
 
@@ -81,6 +83,9 @@ Public Class Form2
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTable()
 
+        RadioButtonMale.Checked = True
+        RadioButtonMale_CheckedChanged(RadioButtonMale, Nothing)
+
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
@@ -110,6 +115,16 @@ Public Class Form2
         End Try
     End Sub
 
+    Private Sub CheckGender(gender As String)
+        If gender = "Male" Then
+            RadioButtonMale.Checked = True
+            RadioButtonMale_CheckedChanged(RadioButtonMale, Nothing)
+        Else
+            RadioButtonFemale.Checked = True
+            RadioButtonFemale_CheckedChanged(RadioButtonFemale, Nothing)
+        End If
+    End Sub
+
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
@@ -118,7 +133,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"SELECT id, surname, age FROM edata WHERE first_name = '{ComboBox1.Text}';"
+            Dim Query = $"SELECT id, surname, age, gender FROM edata WHERE first_name = '{ComboBox1.Text}';"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim Reader = Command.ExecuteReader()
@@ -128,6 +143,8 @@ Public Class Form2
             TextBox_FirstName.Text = ComboBox1.Text
             TextBox_Surname.Text = If(Reader.GetString("surname"), "")
             TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
+
+            CheckGender(Reader.GetString("gender"))
 
             SqlConnection.Close()
         Catch ex As MySqlException
@@ -145,7 +162,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"SELECT id, surname, age FROM edata WHERE first_name = '{ListBox1.Text}';"
+            Dim Query = $"SELECT id, surname, age, gender FROM edata WHERE first_name = '{ListBox1.Text}';"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim Reader = Command.ExecuteReader()
@@ -155,6 +172,8 @@ Public Class Form2
             TextBox_FirstName.Text = ListBox1.Text
             TextBox_Surname.Text = If(Reader.GetString("surname"), "")
             TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
+
+            CheckGender(Reader.GetString("gender"))
 
             SqlConnection.Close()
         Catch ex As MySqlException
@@ -172,7 +191,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = "SELECT id AS 'Employee Id', first_name AS 'First Name', surname AS 'Surname', age AS 'Age' FROM edata;"
+            Dim Query = "SELECT id AS 'Employee Id', first_name AS 'First Name', surname AS 'Surname', age AS 'Age', gender as 'Gender' FROM edata;"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim SDA As New MySqlDataAdapter With {
@@ -215,11 +234,16 @@ Public Class Form2
         Dim FirstName = Row.Cells("First Name").Value
         Dim Surname = Row.Cells("Surname").Value
         Dim Age = Row.Cells("Age").Value
+        Dim gender = Row.Cells("Gender").Value
 
         TextBox_Id.Text = If(IsDBNull(Id), "", Id)
         TextBox_FirstName.Text = If(IsDBNull(FirstName), "", FirstName)
         TextBox_Surname.Text = If(IsDBNull(Surname), "", Surname)
         TextBox_Age.Text = If(IsDBNull(Age), "", Age)
+
+        If Not IsDBNull(gender) Then
+            CheckGender(gender)
+        End If
     End Sub
 
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
@@ -269,5 +293,13 @@ Public Class Form2
         If Dialog = DialogResult.No Then
             e.Cancel = True
         End If
+    End Sub
+
+    Private Sub RadioButtonMale_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonMale.CheckedChanged
+        Gender = "Male"
+    End Sub
+
+    Private Sub RadioButtonFemale_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonFemale.CheckedChanged
+        Gender = "Female"
     End Sub
 End Class
