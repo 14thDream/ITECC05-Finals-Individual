@@ -263,4 +263,11 @@ Public Class Form2
             SqlConnection.Dispose()
         End Try
     End Sub
+
+    Private Sub Form2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Dim Dialog = MessageBox.Show("Do uou really want to close the app", "Exit", MessageBoxButtons.YesNo)
+        If Dialog = DialogResult.No Then
+            e.Cancel = True
+        End If
+    End Sub
 End Class
