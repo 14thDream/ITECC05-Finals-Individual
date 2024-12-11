@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Windows.Forms.DataVisualization.Charting
+Imports MySql.Data.MySqlClient
 
 Public Class Form2
     Private DbDataTable As New DataTable
@@ -179,12 +180,13 @@ Public Class Form2
             }
 
             Dim bSource As New BindingSource With {
-                .DataSource = dbDatatable
+                .DataSource = DbDataTable
             }
 
+            DbDataTable.Rows.Clear()
             SDA.Fill(DbDataTable)
+
             DataGridView1.DataSource = bSource
-            SDA.Update(DbDataTable)
 
             SqlConnection.Close()
 
@@ -226,5 +228,39 @@ Public Class Form2
         }
 
         DataGridView1.DataSource = DV
+    End Sub
+
+    Private Sub ButtonLoadChart_Click(sender As Object, e As EventArgs) Handles ButtonLoadChart.Click
+        Dim SqlConnection As New MySqlConnection With {
+            .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
+        }
+
+        Try
+            SqlConnection.Open()
+
+            Dim Query = "SELECT first_name, age FROM edata;"
+            Dim Command As New MySqlCommand(Query, SqlConnection)
+
+            Chart1.Series("NAME_VS_AGE").Points.Clear()
+
+            Dim Reader = Command.ExecuteReader()
+            While Reader.Read
+                If Reader.IsDBNull("first_name") OrElse Reader.IsDBNull("age") Then
+                    Continue While
+                End If
+
+                Dim Name = Reader.GetString("first_name")
+                Dim Age = Reader.GetInt32("age")
+
+                Dim Index = Chart1.Series("NAME_VS_AGE").Points.AddXY(Name, Age)
+                Chart1.Series("NAME_VS_AGE").Points.ElementAt(Index).XValue = Index + 1
+            End While
+
+            SqlConnection.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            SqlConnection.Dispose()
+        End Try
     End Sub
 End Class

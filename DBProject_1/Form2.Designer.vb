@@ -22,6 +22,9 @@ Partial Class Form2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         Button1 = New Button()
         Panel1 = New Panel()
         Button4 = New Button()
@@ -40,8 +43,11 @@ Partial Class Form2
         ButtonLoadTable = New Button()
         ListBox1 = New ListBox()
         TextBoxSearch = New TextBox()
+        Chart1 = New DataVisualization.Charting.Chart()
+        ButtonLoadChart = New Button()
         Panel1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Chart1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Button1
@@ -215,11 +221,44 @@ Partial Class Form2
         TextBoxSearch.Size = New Size(297, 31)
         TextBoxSearch.TabIndex = 12
         ' 
+        ' Chart1
+        ' 
+        ChartArea1.AxisX.Interval = 1R
+        ChartArea1.AxisX.LabelStyle.Angle = -90
+        ChartArea1.AxisX.LabelStyle.Interval = 1.0R
+        ChartArea1.Name = "ChartArea1"
+        Chart1.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Chart1.Legends.Add(Legend1)
+        Chart1.Location = New Point(163, 327)
+        Chart1.Name = "Chart1"
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "NAME_VS_AGE"
+        Series1.XValueType = DataVisualization.Charting.ChartValueType.Double
+        Chart1.Series.Add(Series1)
+        Chart1.Size = New Size(473, 202)
+        Chart1.TabIndex = 13
+        Chart1.Text = "Chart1"
+        ' 
+        ' ButtonLoadChart
+        ' 
+        ButtonLoadChart.AutoSize = True
+        ButtonLoadChart.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ButtonLoadChart.Location = New Point(31, 286)
+        ButtonLoadChart.Name = "ButtonLoadChart"
+        ButtonLoadChart.Size = New Size(138, 35)
+        ButtonLoadChart.TabIndex = 11
+        ButtonLoadChart.Text = "Load Chart"
+        ButtonLoadChart.UseVisualStyleBackColor = True
+        ' 
         ' Form2
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(800, 534)
+        Controls.Add(ButtonLoadChart)
+        Controls.Add(Chart1)
         Controls.Add(TextBoxSearch)
         Controls.Add(ListBox1)
         Controls.Add(ButtonLoadTable)
@@ -232,6 +271,7 @@ Partial Class Form2
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).EndInit()
+        CType(Chart1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -253,4 +293,6 @@ Partial Class Form2
     Friend WithEvents ButtonLoadTable As Button
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents TextBoxSearch As TextBox
+    Friend WithEvents Chart1 As DataVisualization.Charting.Chart
+    Friend WithEvents ButtonLoadChart As Button
 End Class
