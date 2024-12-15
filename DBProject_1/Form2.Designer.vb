@@ -25,6 +25,7 @@ Partial Class Form2
         Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
         Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
         Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Button1 = New Button()
         Panel1 = New Panel()
         Label6 = New Label()
@@ -282,14 +283,14 @@ Partial Class Form2
         ' 
         ' Chart1
         ' 
-        ChartArea1.AxisX.Interval = 1.0R
+        ChartArea1.AxisX.Interval = 1R
         ChartArea1.AxisX.LabelStyle.Angle = -90
-        ChartArea1.AxisX.LabelStyle.Interval = 1.0R
+        ChartArea1.AxisX.LabelStyle.Interval = 1R
         ChartArea1.Name = "ChartArea1"
         Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         Chart1.Legends.Add(Legend1)
-        Chart1.Location = New Point(263, 327)
+        Chart1.Location = New Point(263, 342)
         Chart1.Name = "Chart1"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
@@ -304,7 +305,7 @@ Partial Class Form2
         ' 
         ButtonLoadChart.AutoSize = True
         ButtonLoadChart.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ButtonLoadChart.Location = New Point(31, 412)
+        ButtonLoadChart.Location = New Point(31, 427)
         ButtonLoadChart.Name = "ButtonLoadChart"
         ButtonLoadChart.Size = New Size(138, 35)
         ButtonLoadChart.TabIndex = 11
@@ -313,9 +314,11 @@ Partial Class Form2
         ' 
         ' Form2
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 534)
+        BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
+        BackgroundImageLayout = ImageLayout.Stretch
+        ClientSize = New Size(800, 564)
         Controls.Add(ButtonLoadChart)
         Controls.Add(Chart1)
         Controls.Add(TextBoxSearch)
