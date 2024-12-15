@@ -41,7 +41,7 @@ Public Class FormLogin
             If Count = 1 Then
                 MessageBox.Show("Username and password are correct")
 
-                Form2.Show()
+                FormEmployees.Show()
                 Close()
             ElseIf Count > 1 Then
                 MessageBox.Show("Username and password are duplicates")

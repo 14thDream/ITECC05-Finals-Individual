@@ -2,16 +2,16 @@
 Imports System.Windows.Forms.DataVisualization.Charting
 Imports MySql.Data.MySqlClient
 
-Public Class Form2
+Public Class FormEmployees
     Private DbDataTable As New DataTable
     Private Gender As String
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub ButtonSignOut_Click(sender As Object, e As EventArgs) Handles ButtonSignOut.Click
         FormLogin.Show()
         Close()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
@@ -19,7 +19,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"INSERT INTO edata(id, first_name, surname, age, gender, birthdate) VALUES ({TextBox_Id.Text}, '{TextBox_FirstName.Text}', '{TextBox_Surname.Text}', '{TextBox_Age.Text}', '{Gender}', '{DateTimePicker1.Text}');"
+            Dim Query = $"INSERT INTO edata(id, first_name, surname, age, gender, birthdate) VALUES ({TextBox_Id.Text}, '{TextBox_FirstName.Text}', '{TextBox_Surname.Text}', '{TextBox_Age.Text}', '{Gender}', '{DateTimePickerBirthDate.Text}');"
             Dim Command As New MySqlCommand(Query, SqlConnection)
             Command.ExecuteReader()
 
@@ -34,7 +34,7 @@ Public Class Form2
         End Try
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub ButtonUpdate_Click(sender As Object, e As EventArgs) Handles ButtonUpdate.Click
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
@@ -42,7 +42,7 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text}, gender = '{Gender}', birthdate = '{DateTimePicker1.Text}' WHERE id = {TextBox_Id.Text};"
+            Dim Query = $"UPDATE edata SET first_name = '{TextBox_FirstName.Text}', surname = '{TextBox_Surname.Text}', age = {TextBox_Age.Text}, gender = '{Gender}', birthdate = '{DateTimePickerBirthDate.Text}' WHERE id = {TextBox_Id.Text};"
             Dim Command As New MySqlCommand(Query, SqlConnection)
             Command.ExecuteReader()
 
@@ -57,7 +57,7 @@ Public Class Form2
         End Try
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
@@ -80,7 +80,7 @@ Public Class Form2
         End Try
     End Sub
 
-    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormEmployees_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTable()
 
         RadioButtonMale.Checked = True
@@ -103,8 +103,8 @@ Public Class Form2
                 End If
 
                 Dim Name As String = Reader.GetString("first_name")
-                ComboBox1.Items.Add(Name)
-                ListBox1.Items.Add(Name)
+                ComboBoxEmployees.Items.Add(Name)
+                ListBoxEmployees.Items.Add(Name)
             End While
 
             SqlConnection.Close()
@@ -125,7 +125,7 @@ Public Class Form2
         End If
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+    Private Sub ComboBoxEmployees_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxEmployees.SelectedIndexChanged
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
@@ -133,21 +133,21 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"SELECT id, surname, age, gender, birthdate FROM edata WHERE first_name = '{ComboBox1.Text}';"
+            Dim Query = $"SELECT id, surname, age, gender, birthdate FROM edata WHERE first_name = '{ComboBoxEmployees.Text}';"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim Reader = Command.ExecuteReader()
             Reader.Read()
 
             TextBox_Id.Text = Reader.GetInt32("id")
-            TextBox_FirstName.Text = ComboBox1.Text
+            TextBox_FirstName.Text = ComboBoxEmployees.Text
             TextBox_Surname.Text = If(Reader.GetString("surname"), "")
             TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
 
             CheckGender(Reader.GetString("gender"))
 
             If Not Reader.IsDBNull("birthdate") Then
-                DateTimePicker1.Text = Reader.GetDateTime("birthdate")
+                DateTimePickerBirthDate.Text = Reader.GetDateTime("birthdate")
             End If
 
             SqlConnection.Close()
@@ -158,7 +158,7 @@ Public Class Form2
         End Try
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+    Private Sub ListBoxEmployees_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxEmployees.SelectedIndexChanged
         Dim SqlConnection As New MySqlConnection With {
             .ConnectionString = "server=localhost;userid=root;password=;database=dbproject1"
         }
@@ -166,21 +166,21 @@ Public Class Form2
         Try
             SqlConnection.Open()
 
-            Dim Query = $"SELECT id, surname, age, gender, birthdate FROM edata WHERE first_name = '{ListBox1.Text}';"
-                Dim Command As New MySqlCommand(Query, SqlConnection)
+            Dim Query = $"SELECT id, surname, age, gender, birthdate FROM edata WHERE first_name = '{ListBoxEmployees.Text}';"
+            Dim Command As New MySqlCommand(Query, SqlConnection)
 
             Dim Reader = Command.ExecuteReader()
             Reader.Read()
 
             TextBox_Id.Text = Reader.GetInt32("id")
-            TextBox_FirstName.Text = ListBox1.Text
+            TextBox_FirstName.Text = ListBoxEmployees.Text
             TextBox_Surname.Text = If(Reader.GetString("surname"), "")
             TextBox_Age.Text = If(Reader.GetInt32("age").ToString(), "")
 
             CheckGender(Reader.GetString("gender"))
 
             If Not Reader.IsDBNull("birthdate") Then
-                DateTimePicker1.Text = Reader.GetDateTime("birthdate")
+                DateTimePickerBirthDate.Text = Reader.GetDateTime("birthdate")
             End If
 
             SqlConnection.Close()
@@ -213,11 +213,11 @@ Public Class Form2
             DbDataTable.Rows.Clear()
             SDA.Fill(DbDataTable)
 
-            DataGridView1.DataSource = bSource
+            DataGridViewEmployees.DataSource = bSource
 
             SqlConnection.Close()
 
-            For Each c As DataGridViewColumn In DataGridView1.Columns
+            For Each c As DataGridViewColumn In DataGridViewEmployees.Columns
                 c.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             Next
 
@@ -232,12 +232,12 @@ Public Class Form2
         LoadTable()
     End Sub
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+    Private Sub DataGridViewEmployees_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewEmployees.CellClick
         If e.RowIndex < 0 Then
             Return
         End If
 
-        Dim Row = DataGridView1.Rows(e.RowIndex)
+        Dim Row = DataGridViewEmployees.Rows(e.RowIndex)
         Dim Id = Row.Cells("Employee Id").Value
         Dim FirstName = Row.Cells("First Name").Value
         Dim Surname = Row.Cells("Surname").Value
@@ -269,7 +269,7 @@ Public Class Form2
             Reader.Read()
 
             If Not Reader.IsDBNull("birthdate") Then
-                DateTimePicker1.Text = Reader.GetMySqlDateTime("birthdate")
+                DateTimePickerBirthDate.Text = Reader.GetMySqlDateTime("birthdate")
             End If
 
             SqlConnection.Close()
@@ -285,7 +285,7 @@ Public Class Form2
             .RowFilter = $"[First Name] LIKE '%{TextBoxSearch.Text}%'"
         }
 
-        DataGridView1.DataSource = DV
+        DataGridViewEmployees.DataSource = DV
     End Sub
 
     Private Sub ButtonLoadChart_Click(sender As Object, e As EventArgs) Handles ButtonLoadChart.Click
@@ -299,7 +299,7 @@ Public Class Form2
             Dim Query = "SELECT first_name, age FROM edata;"
             Dim Command As New MySqlCommand(Query, SqlConnection)
 
-            Chart1.Series("NAME_VS_AGE").Points.Clear()
+            ChartNameVsAge.Series("NAME_VS_AGE").Points.Clear()
 
             Dim Reader = Command.ExecuteReader()
             While Reader.Read
@@ -310,8 +310,8 @@ Public Class Form2
                 Dim Name = Reader.GetString("first_name")
                 Dim Age = Reader.GetInt32("age")
 
-                Dim Index = Chart1.Series("NAME_VS_AGE").Points.AddXY(Name, Age)
-                Chart1.Series("NAME_VS_AGE").Points.ElementAt(Index).XValue = Index + 1
+                Dim Index = ChartNameVsAge.Series("NAME_VS_AGE").Points.AddXY(Name, Age)
+                ChartNameVsAge.Series("NAME_VS_AGE").Points.ElementAt(Index).XValue = Index + 1
             End While
 
             SqlConnection.Close()
@@ -322,7 +322,7 @@ Public Class Form2
         End Try
     End Sub
 
-    Private Sub Form2_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+    Private Sub FormEmployees_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Dim Dialog = MessageBox.Show("Do uou really want to close the app", "Exit", MessageBoxButtons.YesNo)
         If Dialog = DialogResult.No Then
             e.Cancel = True
