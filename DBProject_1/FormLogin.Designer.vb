@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class FormLogin
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,8 +22,8 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Button1 = New Button()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormLogin))
+        ButtonCheckConnection = New Button()
         Label1 = New Label()
         Label2 = New Label()
         TextBox_Username = New TextBox()
@@ -33,18 +33,18 @@ Partial Class Form1
         Panel1.SuspendLayout()
         SuspendLayout()
         ' 
-        ' Button1
+        ' ButtonCheckConnection
         ' 
-        Button1.AutoSize = True
-        Button1.BackColor = Color.Gray
-        Button1.FlatStyle = FlatStyle.Popup
-        Button1.Font = New Font("Microsoft Sans Serif", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.Location = New Point(553, 12)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(235, 39)
-        Button1.TabIndex = 0
-        Button1.Text = "Check Connection"
-        Button1.UseVisualStyleBackColor = False
+        ButtonCheckConnection.AutoSize = True
+        ButtonCheckConnection.BackColor = Color.Gray
+        ButtonCheckConnection.FlatStyle = FlatStyle.Popup
+        ButtonCheckConnection.Font = New Font("Microsoft Sans Serif", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ButtonCheckConnection.Location = New Point(553, 12)
+        ButtonCheckConnection.Name = "ButtonCheckConnection"
+        ButtonCheckConnection.Size = New Size(235, 39)
+        ButtonCheckConnection.TabIndex = 0
+        ButtonCheckConnection.Text = "Check Connection"
+        ButtonCheckConnection.UseVisualStyleBackColor = False
         ' 
         ' Label1
         ' 
@@ -103,24 +103,24 @@ Partial Class Form1
         Button_Login.Text = "Login"
         Button_Login.UseVisualStyleBackColor = True
         ' 
-        ' Form1
+        ' FormLogin
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), Image)
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(800, 450)
         Controls.Add(Panel1)
-        Controls.Add(Button1)
-        Name = "Form1"
-        Text = "Form1"
+        Controls.Add(ButtonCheckConnection)
+        Name = "FormLogin"
+        Text = "Login"
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ButtonCheckConnection As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox_Username As TextBox

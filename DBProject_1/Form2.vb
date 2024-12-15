@@ -7,7 +7,7 @@ Public Class Form2
     Private Gender As String
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Form1.Show()
+        FormLogin.Show()
         Close()
     End Sub
 
