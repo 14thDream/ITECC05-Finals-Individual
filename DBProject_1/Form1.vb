@@ -31,7 +31,7 @@ Public Class Form1
 
             Dim Query = $"SELECT * FROM accounts WHERE username = '{TextBox_Username.Text}' AND password = '{TextBox_Password.Text}';"
             Dim Command As New MySqlCommand(Query, SqlConnection)
-            Dim Reader = Command.ExecuteReader()
+            Dim Reader = Command.ExecuteReader
 
             Dim Count = 0
             While Reader.Read
