@@ -86,7 +86,7 @@ Partial Class Form2
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(Label1)
-        Panel1.Location = New Point(0, 63)
+        Panel1.Location = New Point(24, 63)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(209, 262)
         Panel1.TabIndex = 2
@@ -144,7 +144,7 @@ Partial Class Form2
         ' 
         Button4.AutoSize = True
         Button4.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.Location = New Point(3, 224)
+        Button4.Location = New Point(51, 224)
         Button4.Name = "Button4"
         Button4.Size = New Size(97, 35)
         Button4.TabIndex = 10
