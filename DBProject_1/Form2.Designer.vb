@@ -60,11 +60,11 @@ Partial Class Form2
         ' 
         Button1.AutoSize = True
         Button1.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.Location = New Point(3, 3)
+        Button1.Location = New Point(72, 12)
         Button1.Name = "Button1"
-        Button1.Size = New Size(106, 35)
+        Button1.Size = New Size(113, 35)
         Button1.TabIndex = 1
-        Button1.Text = "SignOut"
+        Button1.Text = "Sign Out"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Panel1
@@ -283,9 +283,9 @@ Partial Class Form2
         ' 
         ' Chart1
         ' 
-        ChartArea1.AxisX.Interval = 1R
+        ChartArea1.AxisX.Interval = 1.0R
         ChartArea1.AxisX.LabelStyle.Angle = -90
-        ChartArea1.AxisX.LabelStyle.Interval = 1R
+        ChartArea1.AxisX.LabelStyle.Interval = 1.0R
         ChartArea1.Name = "ChartArea1"
         Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
@@ -305,7 +305,7 @@ Partial Class Form2
         ' 
         ButtonLoadChart.AutoSize = True
         ButtonLoadChart.Font = New Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        ButtonLoadChart.Location = New Point(31, 427)
+        ButtonLoadChart.Location = New Point(60, 427)
         ButtonLoadChart.Name = "ButtonLoadChart"
         ButtonLoadChart.Size = New Size(138, 35)
         ButtonLoadChart.TabIndex = 11
