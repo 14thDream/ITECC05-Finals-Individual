@@ -6,7 +6,11 @@ Public Class FormEmployees
     Private DbDataTable As New DataTable
     Private Gender As String
 
+    Private SigningOut As Boolean
+
     Private Sub ButtonSignOut_Click(sender As Object, e As EventArgs) Handles ButtonSignOut.Click
+        SigningOut = True
+
         FormLogin.Show()
         Close()
     End Sub
@@ -81,6 +85,8 @@ Public Class FormEmployees
     End Sub
 
     Private Sub FormEmployees_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SigningOut = False
+
         LoadTable()
 
         RadioButtonMale.Checked = True
@@ -323,6 +329,10 @@ Public Class FormEmployees
     End Sub
 
     Private Sub FormEmployees_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If SigningOut Then
+            Return
+        End If
+
         Dim Dialog = MessageBox.Show("Do uou really want to close the app", "Exit", MessageBoxButtons.YesNo)
         If Dialog = DialogResult.No Then
             e.Cancel = True
